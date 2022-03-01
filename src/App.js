@@ -8,7 +8,7 @@ function App() {
     const [currTask, setCurrTask] = useState('');
 
     function Add() {
-        setToDo(toDo => [...toDo, { 'title': currTask ,'type':type}])
+        setToDo(toDo => [...toDo, { 'title': currTask, 'type': type }])
         setCurrTask('')
     }
 
@@ -22,6 +22,8 @@ function App() {
             setToDo(JSON.parse(localStorage.getItem('tasks')))
         }
     }, []);
+
+
 
     useEffect(() => {
         localStorage.setItem('tasks', JSON.stringify(toDo))
@@ -41,11 +43,11 @@ function App() {
                             <input type="text" className="form-control" onChange={(e) => { setCurrTask(e.target.value) }} value={currTask} />
                         </div>
 
-                        <select className="form-select mb-3" onChange={ (e) => {setType(e.target.value)} }  aria-label="Default select example">
-                            <option selected>Genral 📚 </option>
-                            <option value="Study 🎒">Study 🎒</option>
-                            <option value="Home 🏡">Home 🏡</option>
-                            <option value="Self 👦">Self 👦</option>
+                        <select className="form-select mb-3" onChange={(e) => { setType(e.target.value) }} aria-label="Default select example">
+                            <option value="📚"> Genral 📚 </option>
+                            <option value="🎒">Study 🎒</option>
+                            <option value="🏡">Home 🏡</option>
+                            <option value="👦">Self 👦</option>
                         </select>
 
                         {/* <h3> {type} </h3> */}
@@ -60,10 +62,27 @@ function App() {
                         <ul>
                             {
                                 toDo.map((task) => {
+
+                                    let cardCls = ''
+                                    switch (task.type) {
+                                        case '📚':
+                                            cardCls = 'genral'
+                                            break;
+                                        case '🎒':
+                                            cardCls = 'study'
+                                            break;
+                                        case '🏡':
+                                            cardCls = 'home'
+                                            break
+                                        case '👦':
+                                            cardCls = 'self'
+                                            break
+
+                                    }
                                     return (
-                                        <div className='alert alert-primary'>
+                                        <div className={`task-card ${cardCls} `} >
                                             <li key={task} className='ms-2' >
-                                                {task.title}
+                                                {task.type + " " + task.title}
                                             </li>
                                         </div>
                                     )

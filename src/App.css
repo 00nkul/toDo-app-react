@@ -1,0 +1,25 @@
+.task-card{
+    margin: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    padding-left: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px black;
+} 
+
+.genral{
+    background-color: rgb(81, 81, 226);
+    color: aliceblue;
+}
+
+.study{
+    background-color: burlywood;
+}
+
+.home{
+    background-color: skyblue;
+}
+
+.self{
+    background-color: pink;
+}
